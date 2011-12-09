@@ -6,7 +6,7 @@ gem 'rails', '3.1.1'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-
+gem 'paperclip'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -19,7 +19,7 @@ end
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+  gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -33,4 +33,15 @@ gem 'jquery-rails'
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+  gem 'minitest'
+  gem 'factory_girl_rails'
+  gem 'capybara', '>= 1.1.2'
+  gem 'cucumber-rails', '>= 1.2.1'
+  gem 'cucumber', '>= 1.1.3'
+  gem 'rspec-rails'
+  gem 'launchy'
+  #gem 'mocha'
+  gem 'database_cleaner'
+  #gem 'escape_utils'
+  #gem 'shoulda'
 end

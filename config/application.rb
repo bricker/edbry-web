@@ -11,6 +11,11 @@ end
 
 module EdbryWeb
   class Application < Rails::Application
+    
+    ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
+      "<span class=\"field_with_errors\">#{html_tag}</span>".html_safe # this makes the field_with_errors a span instead of the default div 
+    end
+    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

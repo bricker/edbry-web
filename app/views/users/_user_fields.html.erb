@@ -1,0 +1,11 @@
+<%= form_for record do |f| %>
+	<%= check_for_errors record %>
+	<fieldset>
+		<p>
+			<%= f.label :name %> <%= f.text_field :name %>
+		</p>
+		<p>
+			<%= f.submit %>
+		</p>
+	</fieldset>
+<% end %>
