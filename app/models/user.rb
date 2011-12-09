@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   end
   
   def password_required?
-    password.blank?
+    password.blank? && password_digest.blank?
   end
   
 end
