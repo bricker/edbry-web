@@ -6,4 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create :name => "Admin", :password_digest => "$2a$10$HoGLRvf3BR3.eROLYtBY5uPNcsKEKzqeLrTgatPcgLYiHMkRAaD8W"
+user = User.new :name => "Admin"
+user.password_digest = "$2a$10$HoGLRvf3BR3.eROLYtBY5uPNcsKEKzqeLrTgatPcgLYiHMkRAaD8W"
+user.save
