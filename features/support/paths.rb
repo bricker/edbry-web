@@ -16,10 +16,13 @@ module NavigationHelpers
 
     when /^the edit user page for "([^\"]*)"$/
       edit_user_path(User.find_by_name($1))
-      
+       
     when /^(.*)'s profile page$/i
       user_path(User.find_by_name($1))
 
+    when /^the edit password reset page for "([^\"]*)"$/
+      edit_password_reset_path(User.find_by_name($1).password_reset_token)
+      
     else
       begin
         page_name =~ /^the (.*) page$/

@@ -1,0 +1,13 @@
+<%= form_tag password_resets_path, method: 'post', id: "new_password_reset" do %>
+	<fieldset>
+		<legend>Reset Password</legend>
+		<p>
+			<%= label_tag 'email', 'E-mail' %>
+			<%= text_field_tag 'email', params[:email] %>
+		</p>
+	</fieldset>
+
+	<fieldset>
+	  <%= submit_tag "Reset Password" %>
+	</fieldset>
+<% end %>

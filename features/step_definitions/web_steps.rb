@@ -36,12 +36,20 @@ Then /^I should see the ([\w ]+) form$/ do |form_id|
   page.should have_css("##{form_id.gsub(/\W+/, '_')}")
 end
 
+Then /^I should see the ([\w ]+) form for "([^\"]*)"$/ do |form_id, name|
+  page.should have_css("##{form_id.gsub(/\W+/, '_')}_#{User.find_by_name(name).id}")
+end
+
 Then /^I should see the ([\w ]+) list$/ do |list_id|
   page.should have_css("##{list_id.gsub(/\W+/, '_')}")
 end
 
 Then /^I should see "([^\"]*)" in the ([\w ]+) list$/ do |name, list|
   page.find("##{list}").should have_content(name)
+end
+
+Then /^I should not see "([^\"]*)" in the ([\w ]+) list$/ do |name, list|
+  page.find("##{list}").should_not have_content(name)
 end
 
 When /^I submit the form$/ do
@@ -53,6 +61,11 @@ Then /^I should be notified of errors$/ do
   page.should have_css(".field_with_errors")
 end
 
+Then /^I should be notified of (\d) errors?$/ do |count|
+  page.should have_css("#error_explanation")
+  page.should have_css(".field_with_errors", count: count)
+end
+
 Then /^I should see a failure message$/ do
   page.should have_css('#flash .alert')
 end
@@ -62,7 +75,7 @@ Then /^I should see a success message$/ do
 end
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
-  fill_in(field.gsub(/\W+/, '_'), :with => value)
+  fill_in(field.gsub(/\W+/, '_'), with: value)
 end
 ##############################
 
@@ -93,7 +106,7 @@ When /^(?:|I )follow "([^"]*)"$/ do |link|
 end
 
 When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
-  fill_in(field, :with => value)
+  fill_in(field, with: value)
 end
 
 # Use this to fill in an entire form with data from a table. Example:
@@ -114,7 +127,7 @@ When /^(?:|I )fill in the following:$/ do |fields|
 end
 
 When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
-  select(value, :from => field)
+  select(value, from: field)
 end
 
 When /^(?:|I )check "([^"]*)"$/ do |field|
@@ -145,9 +158,9 @@ Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
   regexp = Regexp.new(regexp)
 
   if page.respond_to? :should
-    page.should have_xpath('//*', :text => regexp)
+    page.should have_xpath('//*', text: regexp)
   else
-    assert page.has_xpath?('//*', :text => regexp)
+    assert page.has_xpath?('//*', text: regexp)
   end
 end
 
@@ -163,9 +176,9 @@ Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|
   regexp = Regexp.new(regexp)
 
   if page.respond_to? :should
-    page.should have_no_xpath('//*', :text => regexp)
+    page.should have_no_xpath('//*', text: regexp)
   else
-    assert page.has_no_xpath?('//*', :text => regexp)
+    assert page.has_no_xpath?('//*', text: regexp)
   end
 end
 

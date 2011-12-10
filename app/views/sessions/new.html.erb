@@ -1,11 +1,16 @@
-<%= form_tag sessions_path, :id => "login" do %>
+<%= form_tag sessions_path, id: "login" do %>
 	<fieldset>
+		<legend>Login</legend>
 		<p>
-			<%= label_tag :name %> <%= text_field_tag :name, params[:name] %>
+			<%= label_tag :name %>
+			<%= text_field_tag :name, params[:name] %>
 		</p>
 		<p>
-			<%= label_tag :password %> <%= password_field_tag :password %>
+			<%= label_tag :password %>
+			<%= password_field_tag :password %>
 		</p>
+	</fieldset>
+	<fieldset>
 		<p>
 			<%= submit_tag "Log in" %>
 		</p>

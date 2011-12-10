@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :get_user, :only => [:show, :edit, :update]
+  before_filter :get_user, only: [:show, :edit, :update, :destroy]
+  before_filter :require_login
   respond_to :html
   
   def index
@@ -21,10 +22,15 @@ class UsersController < ApplicationController
     respond_with @user
   end
   
+  def destroy
+    flash[:notice] = "Deleted user." if @user.destroy
+    respond_with @user
+  end
+  
   private
     def get_user
       @user = User.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        redirect_to root_path, :alert => "User not found"
+        redirect_to root_path, alert: "User not found"
     end 
 end

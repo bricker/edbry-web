@@ -2,8 +2,9 @@ EdbryWeb::Application.routes.draw do
   resources :posts
   resources :projects
   resources :users
+  resources :password_resets, only: [:new, :edit, :update, :create]
   
-  resources :sessions, :only => [:new, :create, :destroy]
+  resources :sessions, only: [:new, :create, :destroy]
   match 'login' => 'sessions#new'
   match 'logout' => 'sessions#destroy'
   
@@ -12,6 +13,7 @@ EdbryWeb::Application.routes.draw do
   match 'contact' => 'pages#contact'
   
   root :to => 'pages#home'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

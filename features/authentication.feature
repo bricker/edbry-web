@@ -6,6 +6,11 @@ Feature: User Authentication
 	Background:
 		Given I am on the login page
 		And I am a user with name "Robert Paulson" and password "secret"
+	
+	Scenario: Try to access protected page without logging in
+		When I go to the users page
+		Then I should be on the login page
+		And I should see a failure message
 		
 	Scenario: Login Page
 		When I go to the login page

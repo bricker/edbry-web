@@ -1,0 +1,18 @@
+<%= form_for @user, url: password_reset_path(params[:id]), id: "password_reset" do |f| %>
+	<%= check_for_errors(@user) %>
+	<fieldset>
+		<legend>Reset Password</legend>
+		<p>
+			<%= f.label :password, "New Password" %>
+			<%= f.password_field :password %>
+		</p>
+		<p>
+			<%= f.label :password_confirmation, "Confirm" %>
+			<%= f.password_field :password_confirmation %>
+		</p>
+	</fieldset>
+
+	<fieldset>
+	  <%= f.submit "Reset Password" %>
+	</fieldset>
+<% end %>
