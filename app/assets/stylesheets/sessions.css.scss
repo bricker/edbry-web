@@ -1,3 +1,145 @@
 // Place all the styles related to the sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$iPhoneWidth: 320px;
+$iPhoneHeight: 480px;
+$borderRad: 5px;
+
+@mixin greyGrad {
+  background: #d8d8d8;
+  background: -moz-linear-gradient(top, #d8d8d8 0%, #6d6d6d 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d8d8d8), color-stop(100%,#6d6d6d));
+  background: -webkit-linear-gradient(top, #d8d8d8 0%,#6d6d6d 100%);
+  background: -o-linear-gradient(top, #d8d8d8 0%,#6d6d6d 100%);
+  background: -ms-linear-gradient(top, #d8d8d8 0%,#6d6d6d 100%);
+  background: linear-gradient(top, #d8d8d8 0%,#6d6d6d 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d8d8d8', endColorstr='#6d6d6d',GradientType=0 );
+}
+
+@mixin button {
+  $top: #eee;
+  $bottom: darken($top, 10%);
+  
+  display: inline-block;
+  padding: .2em 1.1em;
+  color: #000 !important;
+  text-align: center;
+  background-image: $top;
+  background-image: -moz-linear-gradient(top, $top 50%, $bottom 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(50%,$top), color-stop(100%,$bottom));
+  background-image: -webkit-linear-gradient(top, $top 50%,$bottom 100%);
+  background-image: -o-linear-gradient(top, $top 50%,$bottom 100%);
+  background-image: -ms-linear-gradient(top, $top 50%,$bottom 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$top', endColorstr='$bottom',GradientType=0 );
+  background: linear-gradient(top, $top 50%,$bottom 100%);
+  border: 1px solid #888;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  border-radius: 1em;
+}
+
+@mixin buttonActive {
+  $top: #ddd;
+  $bottom: lighten($top, 10%);
+  
+  background-image: $top;
+  background-image: -moz-linear-gradient(top, $top 50%, $bottom 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(50%,$top), color-stop(100%,$bottom));
+  background-image: -webkit-linear-gradient(top, $top 50%,$bottom 100%);
+  background-image: -o-linear-gradient(top, $top 50%,$bottom 100%);
+  background-image: -ms-linear-gradient(top, $top 50%,$bottom 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$top', endColorstr='$bottom',GradientType=0 );
+  background: linear-gradient(top, $top 50%,$bottom 100%);
+}
+
+@mixin boxShadow {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+body {
+  background: #CCC;
+  color: #000;
+  font: {
+    size: 20px;
+    family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+}
+
+#flash {
+  $padding: 20px;
+  
+  @include boxShadow;
+  
+  width: 320px - $padding * 2 - 20px;
+  margin: 0 auto;
+  padding: $padding;
+  color: #fff;
+  text-align: center;
+
+  background: #c82829;
+  background: -moz-linear-gradient(top, #c82829 0%, #a90329 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c82829), color-stop(100%,#a90329));
+  background: -webkit-linear-gradient(top, #c82829 0%,#a90329 100%);
+  background: -o-linear-gradient(top, #c82829 0%,#a90329 100%);
+  background: -ms-linear-gradient(top, #c82829 0%,#a90329 100%);
+  background: linear-gradient(top, #c82829 0%,#a90329 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c82829', endColorstr='#a90329',GradientType=0 );
+}
+
+form {
+  width: $iPhoneWidth;
+  margin: 0px auto;
+}
+
+fieldset {
+  $padding: 10px;
+  padding: $padding;
+  
+  legend {
+    text-align: center;
+    padding: 1em 0 0.5em;
+    text-shadow: 1px 1px 0 #ddd;
+    font-weight: bold;
+  }
+  
+  p {
+    @include boxShadow;
+    margin-bottom:10px;
+    border-radius: $borderRad;
+    
+    label, input {
+      display: block;
+      padding: 5px;
+      width: $iPhoneWidth - $padding * 2 - 10px;
+      font: {
+        size: 20px;
+        family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        weight: bold;
+      }
+    }
+    label {
+      $bgColor: #CFCFCF;
+      background: $bgColor;
+      color: #333;
+      text-shadow:1px 1px 0px #999;
+      border-bottom: 1px solid darken($bgColor, 20%);
+      border-top-right-radius: $borderRad;
+      border-top-left-radius: $borderRad;
+    }
+    label~input { // inputs after a label
+//      color: #fff;
+      background: #eee;
+      border-bottom-right-radius: $borderRad;
+      border-bottom-left-radius: $borderRad;
+    }
+    input[type="submit"] {
+      @include button;
+      width: $iPhoneWidth - $padding * 2;
+      border-radius: $borderRad;
+    }
+    input[type="submit"]:active {
+      @include buttonActive;
+    }
+  }
+}
