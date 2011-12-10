@@ -30,7 +30,7 @@ Feature: Password Reset
 		When I go to the new password reset page
 		And I fill in "email" with "ron-swanson@example.com"
 		And I submit the form
-		And an hour has passed since I requested a password reset
+		And an hour has passed since I requested a password reset for "Ron Swanson"
 		And I go to the edit password reset page for "Ron Swanson"
 		Then I should be on the new password reset page
 		And I should see a failure message

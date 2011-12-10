@@ -3,7 +3,7 @@ Given /^I am a user with name "([^\"]*)" and password "([^\"]*)"$/ do |name, pas
 end
 
 Given /^(?:|I am )a user named "([^\"]*)"$/ do |name|
-  @user = Factory(:user, name: name)
+  user = Factory(:user, name: name)
 end
 
 Given /^I have logged in$/ do
@@ -25,6 +25,7 @@ Then /^"([^\"]*)" should have a password reset token$/ do |name|
   user.password_reset_token.should_not eq nil
 end
 
-When /^an hour has passed since I requested a password reset$/ do
-  @user.update_attribute(:password_reset_requested_at, 1.hour.ago)
+When /^an hour has passed since I requested a password reset for "([^\"]*)"$/ do |name|
+  user = User.find_by_name(name)
+  user.update_attribute(:password_reset_requested_at, 1.hour.ago)
 end
