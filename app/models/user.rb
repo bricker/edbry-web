@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  require 'digest/sha1'
   has_secure_password # This is built into Rails 3.1. It gives us the "authenticate" method and the "password=" method. Also validates password confirmation. Uses BCrypt.
   
   ####### Associations
