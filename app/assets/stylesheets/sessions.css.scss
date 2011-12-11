@@ -2,55 +2,49 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// <% # TODO Move flash block to application.css
+//# TODO Change flash code to be able to respond to different types of messages based on class %>
+
 $iPhoneWidth: 320px;
 $iPhoneHeight: 480px;
 $borderRad: 5px;
 
-@mixin greyGrad {
-  background: #d8d8d8;
-  background: -moz-linear-gradient(top, #d8d8d8 0%, #6d6d6d 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d8d8d8), color-stop(100%,#6d6d6d));
-  background: -webkit-linear-gradient(top, #d8d8d8 0%,#6d6d6d 100%);
-  background: -o-linear-gradient(top, #d8d8d8 0%,#6d6d6d 100%);
-  background: -ms-linear-gradient(top, #d8d8d8 0%,#6d6d6d 100%);
-  background: linear-gradient(top, #d8d8d8 0%,#6d6d6d 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d8d8d8', endColorstr='#6d6d6d',GradientType=0 );
+@mixin vGradient($top, $bottom) {
+  background: $top;
+  background: -moz-linear-gradient(top, $top 0%, $bottom 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$top), color-stop(100%,$bottom));
+  background: -webkit-linear-gradient(top, $top 0%,$bottom 100%);
+  background: -o-linear-gradient(top, $top 0%,$bottom 100%);
+  background: -ms-linear-gradient(top, $top 0%,$bottom 100%);
+  background: linear-gradient(top, $top 0%,$bottom 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$top', endColorstr='$bottom',GradientType=0 );
+}
+
+@mixin roundedCorners {
+  -webkit-border-radius: $borderRad;
+  -moz-border-radius: $borderRad;
+  border-radius: $borderRad;
 }
 
 @mixin button {
   $top: #eee;
   $bottom: darken($top, 10%);
+  @include vGradient($top, $bottom);
   
   display: inline-block;
   padding: .2em 1.1em;
   color: #000 !important;
   text-align: center;
-  background-image: $top;
-  background-image: -moz-linear-gradient(top, $top 50%, $bottom 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(50%,$top), color-stop(100%,$bottom));
-  background-image: -webkit-linear-gradient(top, $top 50%,$bottom 100%);
-  background-image: -o-linear-gradient(top, $top 50%,$bottom 100%);
-  background-image: -ms-linear-gradient(top, $top 50%,$bottom 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$top', endColorstr='$bottom',GradientType=0 );
-  background: linear-gradient(top, $top 50%,$bottom 100%);
   border: 1px solid #888;
-  -webkit-border-radius: 1em;
-  -moz-border-radius: 1em;
-  border-radius: 1em;
+  -webkit-border-radius: $borderRad;
+  -moz-border-radius: $borderRad;
+  border-radius: $borderRad;
 }
 
 @mixin buttonActive {
   $top: #ddd;
   $bottom: lighten($top, 10%);
-  
-  background-image: $top;
-  background-image: -moz-linear-gradient(top, $top 50%, $bottom 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(50%,$top), color-stop(100%,$bottom));
-  background-image: -webkit-linear-gradient(top, $top 50%,$bottom 100%);
-  background-image: -o-linear-gradient(top, $top 50%,$bottom 100%);
-  background-image: -ms-linear-gradient(top, $top 50%,$bottom 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$top', endColorstr='$bottom',GradientType=0 );
-  background: linear-gradient(top, $top 50%,$bottom 100%);
+  @include vGradient($top, $bottom);
 }
 
 @mixin boxShadow {
@@ -58,7 +52,7 @@ $borderRad: 5px;
 }
 
 body {
-  background: #CCC;
+//  background: #CCC;
   color: #000;
   font: {
     size: 20px;
@@ -66,30 +60,36 @@ body {
   }
 }
 
-#flash {
-  $padding: 20px;
-  
-  @include boxShadow;
-  
-  width: 320px - $padding * 2 - 20px;
-  margin: 0 auto;
-  padding: $padding;
-  color: #fff;
-  text-align: center;
-
-  background: #c82829;
-  background: -moz-linear-gradient(top, #c82829 0%, #a90329 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c82829), color-stop(100%,#a90329));
-  background: -webkit-linear-gradient(top, #c82829 0%,#a90329 100%);
-  background: -o-linear-gradient(top, #c82829 0%,#a90329 100%);
-  background: -ms-linear-gradient(top, #c82829 0%,#a90329 100%);
-  background: linear-gradient(top, #c82829 0%,#a90329 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c82829', endColorstr='#a90329',GradientType=0 );
-}
+//#flash {
+//  div {
+//    $padding: 20px;
+//    @include boxShadow;
+//
+//    width: 320px - $padding * 2 - 20px;
+//    margin: 0 auto;
+//    padding: $padding;
+//    color: #fff;
+//    text-align: center;
+//  }
+//  
+//  .alert {
+//    $topColor: #c82829;
+//    $bottomColor: darken($topColor, 6%); //ae2324 from a90329
+//    @include vGradient($topColor, $bottomColor);
+//  }
+//  
+//  .notice {
+//    $topColor: #eab700;
+//    $bottomColor: darken($topColor, 6%);
+//    @include vGradient($topColor, $bottomColor);
+//  }
+//}
 
 form {
   width: $iPhoneWidth;
   margin: 0px auto;
+  background: rgba(0, 0, 0, 0.3);
+  padding-top: 50px;
 }
 
 fieldset {
@@ -97,10 +97,17 @@ fieldset {
   padding: $padding;
   
   legend {
+    @include roundedCorners;
+    
+    display: block;
+    width: $iPhoneWidth - 40px;
     text-align: center;
-    padding: 1em 0 0.5em;
+    padding: .5em;
     text-shadow: 1px 1px 0 #ddd;
     font-weight: bold;
+    background: rgba(204,204,204,0.8);
+    box-shadow:inset 0 0 5px #000;
+    border: 1px solid #555;
   }
   
   p {
