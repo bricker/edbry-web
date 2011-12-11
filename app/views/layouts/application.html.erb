@@ -7,21 +7,31 @@
 	  <%= csrf_meta_tags %>
 	</head>
 	<body>
-		<% unless flash.empty? 
-			# These divs won't exist if there are no flash messages sent from the controller
-		%>
+		<% unless flash.empty? %>
+			<%# These divs won't exist if there are no flash messages sent from the controller
+			 	name = "notice" or "alert", and msg = the actual flash message
+								
+				 I will be using "notice" (success) and "alert" (failure) in the controllers, and the tests look for CSS classes with those names, 
+				 so it's important to either use those or change them in the tests/controllers if you want to use different names, which I don't
+				 recommend because "notice" and "alert" are built into the Rails source to allow some nice functionality
+			%>
 			<div id="flash">
-	    		<% flash.each do |name, msg| 
-					# name = "notice" or "alert", and msg = the actual flash message 
-				%>
-					<%# I will be using "notice" (success) and "alert" (failure) in the controllers, and the tests look for CSS classes with those names, 
-						so it's important to either use those or change them in the tests/controllers if you want to use different names, which I don't
-						recommend because "notice" and "alert" are built into the Rails source to allow some nice functionality %>
-						
+				<% flash.each do |name, msg| %>
 					<div class="<%= name %>"><%= msg %></div>
 				<% end %>
 			</div>
 		<% end %>
+		<div>
+			<% if current_user %>
+				<%= link_to "Logout", logout_path, method: 'delete' %> - 
+				<%= link_to "Manage Users", users_path %> - 
+				<%# More Navigation or whatever for logged in users can go here as well %>
+			<% else %>
+				<%= link_to "Login", login_path %> - 
+			<% end %>
+			<%= link_to "Home", root_path %> - 
+			<%= link_to "Blog", posts_path %>
+		</div>
 	
 		<%= yield %>
 

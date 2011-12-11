@@ -1,31 +1,32 @@
-Given /^I am a user with name "([^\"]*)" and password "([^\"]*)"$/ do |name, password|
-  user = Factory(:user, name: name, password: password)
+Given /^(?:|I am )a user named "([^\"]*)" with password "([^\"]*)"$/ do |name, password|
+  @me = Factory(:user, name: name, password: password)
 end
 
 Given /^(?:|I am )a user named "([^\"]*)"$/ do |name|
-  user = Factory(:user, name: name)
+  @user = Factory(:user, name: name)
 end
 
 Given /^I have logged in$/ do
-  user = Factory(:user)
+  @me ||= Factory(:user)
   visit login_path
-  fill_in 'name', with: user.name
-  fill_in 'password', with: user.password
+  fill_in 'name', with: @me.name
+  fill_in 'password', with: @me.password
   find('input[type=submit]').click
   current_path.should eq(root_path)
 end
 
-Then /^"([^\"]*)" should not have a password reset token$/ do |name|
-  user = User.find_by_name(name)
-  user.password_reset_token.should eq nil
+Given /^I have logged in as "([^"]*)"$/ do |name|
+  @me ||= Factory(:user)
+  visit login_path
+  fill_in 'name', with: @me.name
+  fill_in 'password', with: @me.password
+  find('input[type=submit]').click
+  current_path.should eq(root_path)
 end
 
-Then /^"([^\"]*)" should have a password reset token$/ do |name|
-  user = User.find_by_name(name)
-  user.password_reset_token.should_not eq nil
-end
-
-When /^an hour has passed since I requested a password reset for "([^\"]*)"$/ do |name|
-  user = User.find_by_name(name)
-  user.update_attribute(:password_reset_requested_at, 1.hour.ago)
+When /^I login with name "([^"]*)" and password "([^"]*)"$/ do |name, password|
+  visit login_path
+  fill_in "name", with: name
+  fill_in "password", with: password
+  find('input[type=submit]').click
 end

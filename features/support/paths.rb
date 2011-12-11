@@ -8,9 +8,22 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
+    #### GENERAL ####
     when /^the home\s?page$/
       '/'
     
+    
+    #### POSTS ####
+    when /^the post's page$/
+      post_path(Post.last)
+    
+    when /^the posts page$/
+      posts_path
+      
+    when /^the edit page for the post$/
+      edit_post_path(@post)
+       
+    #### USERS ####
     when /^the users page$/
       users_path
 
@@ -20,9 +33,20 @@ module NavigationHelpers
     when /^(.*)'s profile page$/i
       user_path(User.find_by_name($1))
 
+
+    #### PASSWORD RESET ####
     when /^the edit password reset page for "([^\"]*)"$/
       edit_password_reset_path(User.find_by_name($1).password_reset_token)
       
+    when /^the reset password page e-mailed to me$/
+      edit_password_reset_path(@me.password_reset_token)
+      
+    when /^the forgot password page$/
+      new_password_reset_path
+    
+    when /^the reset password page with an invalid token$/
+      edit_password_reset_path("invalid_token")
+          
     else
       begin
         page_name =~ /^the (.*) page$/

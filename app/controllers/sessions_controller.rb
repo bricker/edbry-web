@@ -1,4 +1,8 @@
-class SessionsController < ApplicationController  
+class SessionsController < ApplicationController
+  def new
+    redirect_to root_path, notice: "You are logged in as #{@current_user.name}." and return false if current_user # If already logged in, redirect to home page
+  end
+  
   def create
     user = User.find_by_name(params[:name])
     if user && user.authenticate(params[:password]) # authenticate is a method given to us by Rails' has_secure_password method

@@ -30,6 +30,14 @@ describe User do
       User.all.count.should eq(1)
     end
     
+    it "does not create a new user without a name" do
+      
+    end
+    
+    it "does not create a new user without an email" do
+      
+    end
+    
     it "encrypts the password" do
       user = Factory(:user)
       BCrypt::Password.new(user.password_digest).should eq("secret")

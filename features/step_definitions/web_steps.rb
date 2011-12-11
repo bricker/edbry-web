@@ -62,8 +62,7 @@ Then /^I should be notified of errors$/ do
 end
 
 Then /^I should be notified of (\d) errors?$/ do |count|
-  page.should have_css("#error_explanation")
-  page.should have_css(".field_with_errors", count: count)
+  page.should have_css("#error_explanation li", count: count)
 end
 
 Then /^I should see a failure message$/ do

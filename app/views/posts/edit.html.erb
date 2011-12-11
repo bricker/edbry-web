@@ -1,0 +1,5 @@
+<%= render partial: "post_fields", locals: { post: @post } %>
+
+<p>
+	<%= link_to "Delete this post", post_path(@post), method: 'delete', id: 'delete', confirm: "Are you sure you want to delete this post?" %>
+</p>

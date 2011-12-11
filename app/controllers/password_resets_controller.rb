@@ -22,7 +22,7 @@ class PasswordResetsController < ApplicationController
   def get_user
     @user = User.find_by_password_reset_token!(params[:id])
     rescue ActiveRecord::RecordNotFound
-      redirect_to login_path, alert: "User not found."
+      redirect_to new_password_reset_path, alert: "Invalid Token."
   end
   
   def check_token_expiration

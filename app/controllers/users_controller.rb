@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_filter :get_user, only: [:show, :edit, :update, :destroy]
   before_filter :require_login
+  before_filter :get_user, except: [:index, :new, :create]
+  
   respond_to :html
   
   def index

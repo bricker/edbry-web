@@ -1,4 +1,4 @@
-<%= form_for @user, url: password_reset_path(params[:id]), id: "password_reset" do |f| %>
+<%= form_for @user, url: password_reset_path(params[:id]), html: { id: "password_reset" } do |f| %>
 	<%= check_for_errors(@user) %>
 	<fieldset>
 		<legend>Reset Password</legend>

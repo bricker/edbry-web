@@ -1,8 +1,8 @@
 EdbryWeb::Application.routes.draw do
-  resources :posts
+  resources :posts 
   resources :projects
   resources :users
-  resources :password_resets, only: [:new, :edit, :update, :create]
+  resources :password_resets, only: [:new, :edit, :update, :create] # TODO make the URLs say /forgot_password and /reset_password
   
   resources :sessions, only: [:new, :create, :destroy]
   match 'login' => 'sessions#new'
@@ -12,7 +12,7 @@ EdbryWeb::Application.routes.draw do
   match 'about' => 'pages#about'
   match 'contact' => 'pages#contact'
   
-  root :to => 'pages#home'
+  root to: 'pages#home'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

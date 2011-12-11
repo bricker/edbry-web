@@ -1,0 +1,15 @@
+<%= form_for post, html: { id: post.new_record? ? "new_post" : "edit_post" } do |f| %>
+	<%= check_for_errors post %>
+	<fieldset>
+		<legend><%= post.new_record? ? "Add Post" : "Edit Post" %></legend>
+		<p>
+			<%= f.label :title %> 
+			<%= f.text_field :title %>
+		</p>
+		<p>
+			<%= f.text_area :content %>
+		</p>
+		
+		<%= f.submit %>
+	</fieldset>
+<% end %>
