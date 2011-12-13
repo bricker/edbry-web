@@ -1,23 +1,27 @@
 <%= form_for @user do |f| %>
-	<%= check_for_errors @user %>
-	<fieldset>
-		<legend>Edit User: <%= @user.name %></legend>
-		<%= render partial: "user_fields", locals: { f: f } %>
-		<p>
-			<%= f.label :password, "New Password" %> 
-			<%= f.password_field :password %>
-		</p>
-		<p>
-			<%= f.label :password_confirmation %> 
-			<%= f.password_field :password_confirmation %>
-		</p>
-	</fieldset>
-	
-	<fieldset>
-		<%= f.submit %>
-	</fieldset>
+  <%= check_for_errors @user %>
+  <fieldset>
+    <legend>Edit User: <%= @user.name %></legend>
+    <ol>
+      <%= render partial: "user_fields", locals: { f: f } %>
+      <li>
+        <%= f.label :password, "New Password" %> 
+        <%= f.password_field :password %>
+      </li>
+      <li>
+        <%= f.label :password_confirmation %> 
+        <%= f.password_field :password_confirmation %>
+      </li>
+    </ol>
+    </fieldset>
+    <fieldset class="final">
+      <ol>
+        <li>
+          <%= f.submit %>
+        </li>
+        <li>
+          <%= link_to "Delete User", @user, method: 'delete', confirm: "Are you sure you want to delete the user #{@user.name}?", id: "delete", class: "delete_user" %>
+        </li>
+      </ol>
+  </fieldset>
 <% end %>
-
-<p>
-	<%= link_to "Delete User", @user, method: 'delete', confirm: "Are you sure you want to delete the user #{@user.name}?", id: "delete" %>
-</p>

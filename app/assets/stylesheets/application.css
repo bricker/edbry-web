@@ -19,8 +19,11 @@
 }
 
 body {
-  background: #222 url('bg3.png');
-  
+  background: #ccc;
+}
+
+a {
+  color: inherit;
 }
 
 #flash div {
@@ -31,7 +34,7 @@ body {
   color: #fff;
   text-align: center;
 }
-/* line 69, /Users/edwardloveall/Sites/edbry-web/app/assets/stylesheets/sessions.css.scss */
+
 #flash .alert {
   background: #c82829;
   background: -moz-linear-gradient(top, #c82829 0%, #ae2324 100%);
@@ -40,9 +43,9 @@ body {
   background: -o-linear-gradient(top, #c82829 0%, #ae2324 100%);
   background: -ms-linear-gradient(top, #c82829 0%, #ae2324 100%);
   background: linear-gradient(top, #c82829 0%, #ae2324 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$top', endColorstr='$bottom',GradientType=0 );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c82829', endColorstr='#ae2324',GradientType=0 );
 }
-/* line 75, /Users/edwardloveall/Sites/edbry-web/app/assets/stylesheets/sessions.css.scss */
+
 #flash .notice {
   background: #eab700;
   background: -moz-linear-gradient(top, #eab700 0%, #cb9f00 100%);
@@ -51,5 +54,23 @@ body {
   background: -o-linear-gradient(top, #eab700 0%, #cb9f00 100%);
   background: -ms-linear-gradient(top, #eab700 0%, #cb9f00 100%);
   background: linear-gradient(top, #eab700 0%, #cb9f00 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$top', endColorstr='$bottom',GradientType=0 );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eab700', endColorstr='#cb9f00',GradientType=0 );
+}
+
+#navBar {
+  background: #000;
+  color: #fff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+#navBar a {
+  font-size: .7em;
+  display: inline-block;
+  padding: .8em;
+  border-right: 1px solid #fff;
+  text-decoration: none;
+}
+
+#navBar a:hover {
+  background: #222;
 }

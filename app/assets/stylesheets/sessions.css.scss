@@ -2,57 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// <% # TODO Move flash block to application.css
-//# TODO Change flash code to be able to respond to different types of messages based on class %>
-
-$iPhoneWidth: 320px;
-$iPhoneHeight: 480px;
-$borderRad: 5px;
-
-@mixin vGradient($top, $bottom) {
-  background: $top;
-  background: -moz-linear-gradient(top, $top 0%, $bottom 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$top), color-stop(100%,$bottom));
-  background: -webkit-linear-gradient(top, $top 0%,$bottom 100%);
-  background: -o-linear-gradient(top, $top 0%,$bottom 100%);
-  background: -ms-linear-gradient(top, $top 0%,$bottom 100%);
-  background: linear-gradient(top, $top 0%,$bottom 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$top', endColorstr='$bottom',GradientType=0 );
-}
-
-@mixin roundedCorners {
-  -webkit-border-radius: $borderRad;
-  -moz-border-radius: $borderRad;
-  border-radius: $borderRad;
-}
-
-@mixin button {
-  $top: #eee;
-  $bottom: darken($top, 10%);
-  @include vGradient($top, $bottom);
-  
-  display: inline-block;
-  padding: .2em 1.1em;
-  color: #000 !important;
-  text-align: center;
-  border: 1px solid #888;
-  -webkit-border-radius: $borderRad;
-  -moz-border-radius: $borderRad;
-  border-radius: $borderRad;
-}
-
-@mixin buttonActive {
-  $top: #ddd;
-  $bottom: lighten($top, 10%);
-  @include vGradient($top, $bottom);
-}
-
-@mixin boxShadow {
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
-}
+@import "sass_vars.css.scss";
 
 body {
-//  background: #CCC;
   color: #000;
   font: {
     size: 20px;
@@ -88,8 +40,8 @@ body {
 form {
   width: $iPhoneWidth;
   margin: 0px auto;
-  background: rgba(0, 0, 0, 0.3);
-  padding-top: 50px;
+//  background: rgba(0, 0, 0, 0.3);
+  padding-top: 20px;
 }
 
 fieldset {
@@ -100,53 +52,75 @@ fieldset {
     @include roundedCorners;
     
     display: block;
-    width: $iPhoneWidth - 40px;
+    width: $iPhoneWidth - (40px + 0px); // 2 extra pixels because of the border
     text-align: center;
     padding: .5em;
-    text-shadow: 1px 1px 0 #ddd;
     font-weight: bold;
-    background: rgba(204,204,204,0.8);
-    box-shadow:inset 0 0 5px #000;
-    border: 1px solid #555;
-  }
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow:inset 0 0 5px #fff;
+    border: 1px solid #535353;
+//    color: #fff;
+  } // legend
   
-  p {
-    @include boxShadow;
-    margin-bottom:10px;
-    border-radius: $borderRad;
+  ol {
+    list-style-type: none;
     
-    label, input {
-      display: block;
-      padding: 5px;
-      width: $iPhoneWidth - $padding * 2 - 10px;
-      font: {
-        size: 20px;
-        family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        weight: bold;
-      }
-    }
-    label {
-      $bgColor: #CFCFCF;
-      background: $bgColor;
-      color: #333;
-      text-shadow:1px 1px 0px #999;
-      border-bottom: 1px solid darken($bgColor, 20%);
-      border-top-right-radius: $borderRad;
-      border-top-left-radius: $borderRad;
-    }
-    label~input { // inputs after a label
-//      color: #fff;
-      background: #eee;
-      border-bottom-right-radius: $borderRad;
-      border-bottom-left-radius: $borderRad;
-    }
-    input[type="submit"] {
-      @include button;
-      width: $iPhoneWidth - $padding * 2;
+    li {
+      margin-bottom:10px;
       border-radius: $borderRad;
+      width: default;
+      border: 1px solid #999;
+
+      label, input, textarea {
+        display: block;
+        padding: 5px;
+        font: {
+          size: 20px;
+          family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          weight: bold;
+        }
+      }
+      label {
+        $bgColor: #CFCFCF;
+        background: $bgColor;
+        color: #333;
+        text-shadow:1px 1px 0px #999;
+        border-bottom: 1px solid darken($bgColor, 20%);
+        border-top-right-radius: $borderRad;
+        border-top-left-radius: $borderRad;
+      }
+      
+      label~input {
+        // inputs after a label
+        width: $iPhoneWidth - $padding * 2 - 10px;
+        background: #eee;
+        border-bottom-right-radius: $borderRad;
+        border-bottom-left-radius: $borderRad;
+      }
+      textarea {
+        width: $iPhoneWidth - $padding * 2 - 10px;
+        height: 100%;
+        border-radius: $borderRad;
+      }
+      input[type="submit"] {
+        @include button;
+        width: $iPhoneWidth - $padding * 2 + 2; // + 2 for lack of horizonal border
+      }
+      input[type="submit"]:active {
+        @include buttonActive;
+        top: 1px;
+      }
+    } // li
+
+    .forgot_password {
+      text-align: right;
+      font-size: .6em;
+      color: #666;
     }
-    input[type="submit"]:active {
-      @include buttonActive;
-    }
-  }
-}
+  } // ol
+} // fieldset
+
+fieldset.final ol li {
+  box-shadow: none;
+  border: none;
+} // no shadow on the last element of a form, likey a submit button

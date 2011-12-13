@@ -1,0 +1,44 @@
+$iPhoneWidth: 320px;
+$iPhoneHeight: 480px;
+$borderRad: 5px;
+
+@mixin vGradient($top, $bottom) {
+  background: $top;
+  background: -moz-linear-gradient(top, $top 0%, $bottom 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$top), color-stop(100%,$bottom));
+  background: -webkit-linear-gradient(top, $top 0%,$bottom 100%);
+  background: -o-linear-gradient(top, $top 0%,$bottom 100%);
+  background: -ms-linear-gradient(top, $top 0%,$bottom 100%);
+  background: linear-gradient(top, $top 0%,$bottom 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$top}', endColorstr='#{$bottom}',GradientType=0 );
+}
+
+@mixin roundedCorners {
+  -webkit-border-radius: $borderRad;
+  -moz-border-radius: $borderRad;
+  border-radius: $borderRad;
+}
+
+@mixin button($topColor:#eee) {
+  $bottomColor: darken($topColor, 10%);
+  @include vGradient($topColor, $bottomColor);
+  
+  position: relative;
+  display: inline-block;
+  padding: .2em 1.1em;
+  color: #000;
+  text-align: center;
+  border: 1px solid #888;
+  -webkit-border-radius: $borderRad;
+  -moz-border-radius: $borderRad;
+  border-radius: $borderRad;
+}
+
+@mixin buttonActive($topColor: #ddd) {
+  $bottomColor: lighten($topColor, 10%);
+  @include vGradient($topColor, $bottomColor);
+}
+
+@mixin boxShadow {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}

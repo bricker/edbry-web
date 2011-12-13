@@ -1,18 +1,25 @@
 <%= form_tag sessions_path, id: "login" do %>
-	<fieldset>
-		<legend>Login</legend>
-		<p>
-			<%= label_tag :name %>
-			<%= text_field_tag :name, params[:name] %>
-		</p>
-		<p>
-			<%= label_tag :password %>
-			<%= password_field_tag :password %>
-		</p>
-		<p>
-			<%= submit_tag "Log in" %>
-		</p>
-	</fieldset>
+  <fieldset>
+    <legend>Login</legend>
+    <ol>
+      <li>
+        <%= label_tag :name %>
+        <%= text_field_tag :name, params[:name] %>
+      </li>
+      <li>
+        <%= label_tag :password %>
+        <%= password_field_tag :password %>
+      </li>
+    <ol>
+  </fieldset>
+  <fieldset class="final">
+    <ol>
+      <li class="final">
+        <%= submit_tag "Log in" %>
+      </li>
+      <li class="forgot_password">
+        <%= link_to "Forgot Password?", new_password_reset_path %>
+      </li>
+    </ol>
+  </fieldset>
 <% end %>
-
-<%= link_to "Forgot Password?", new_password_reset_path %>

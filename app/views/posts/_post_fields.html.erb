@@ -1,15 +1,20 @@
 <%= form_for post, html: { id: post.new_record? ? "new_post" : "edit_post" } do |f| %>
-	<%= check_for_errors post %>
-	<fieldset>
-		<legend><%= post.new_record? ? "Add Post" : "Edit Post" %></legend>
-		<p>
-			<%= f.label :title %> 
-			<%= f.text_field :title %>
-		</p>
-		<p>
-			<%= f.text_area :content %>
-		</p>
-		
-		<%= f.submit %>
-	</fieldset>
+  <%= check_for_errors post %>
+  <fieldset>
+    <legend><%= post.new_record? ? "Add Post" : "Edit Post" %></legend>
+    <ol>
+      <li>
+        <%= f.label :title %> 
+        <%= f.text_field :title %>
+      </li>
+      <li>
+        <%= f.text_area :content, cols: "", rows: "10" %>
+      </li>
+    </ol>
+    </fieldset>
+    <fieldset class="final">
+      <ol>
+        <li><%= f.submit %></li>
+      </ol>
+  </fieldset>
 <% end %>

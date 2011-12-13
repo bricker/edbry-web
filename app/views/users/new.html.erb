@@ -1,14 +1,20 @@
 <%= form_for @user do |f| %>
-	<%= check_for_errors @user %>
-	<fieldset>
-		<legend>Add User</legend>
-		<%= render partial: "user_fields", locals: { f: f } %>
-		<p>
-			A password will be automatically generated and sent to the e-mail address entered above.
-		</p>
-	</fieldset>
-	
-	<fieldset>
-		<%= f.submit %>
-	</fieldset>
+  <%= check_for_errors @user %>
+  <fieldset>
+    <legend>Add User</legend>
+    <ol>
+    <%= render partial: "user_fields", locals: { f: f } %>
+    </ol>
+    <p>
+      A password will be automatically generated and sent to the e-mail address entered above.
+    </p>
+  </fieldset>
+  
+  <fieldset class="final">
+    <ol>
+      <li>
+       <%= f.submit %>
+      </li>
+    </ol>
+  </fieldset>
 <% end %>
