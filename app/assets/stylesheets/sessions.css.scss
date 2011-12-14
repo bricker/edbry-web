@@ -4,14 +4,6 @@
 
 @import "sass_vars.css.scss";
 
-body {
-  color: #000;
-  font: {
-    size: 20px;
-    family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  }
-}
-
 //#flash {
 //  div {
 //    $padding: 20px;
@@ -39,7 +31,7 @@ body {
 
 form {
   width: $iPhoneWidth;
-  margin: 0px auto;
+//  margin: 0px auto;
 //  background: rgba(0, 0, 0, 0.3);
   padding-top: 20px;
 }
@@ -108,12 +100,11 @@ fieldset {
       }
       input[type="submit"]:active {
         @include buttonActive;
-        top: 1px;
       }
     } // li
 
     .forgot_password {
-      text-align: right;
+      text-align: left;
       font-size: .6em;
       color: #666;
     }

@@ -32,11 +32,13 @@ $borderRad: 5px;
   -webkit-border-radius: $borderRad;
   -moz-border-radius: $borderRad;
   border-radius: $borderRad;
+  text-decoration: none;
 }
 
 @mixin buttonActive($topColor: #ddd) {
   $bottomColor: lighten($topColor, 10%);
   @include vGradient($topColor, $bottomColor);
+  top: 1px;
 }
 
 @mixin boxShadow {

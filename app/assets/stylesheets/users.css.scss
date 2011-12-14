@@ -14,3 +14,14 @@ a.delete_user {
   $padding: 10px;
   width: $iPhoneWidth - $padding * 2;
 }
+
+a.delete_user:active {
+  @include buttonActive(#9D2020);
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  padding: .2em 0;
+  display: block;
+  $padding: 10px;
+  width: $iPhoneWidth - $padding * 2;
+}

@@ -1,7 +1,5 @@
 <div id="posts">
-	<%= render @posts %>
+  <%= render @posts %>
 </div>
 
-<p>
-	<%= link_to "Add Post", new_post_path %>
-</p>
+<%= link_to "Add Post", new_post_path, class: "new_post" %>
