@@ -1,0 +1,4 @@
+<h2><%= @page.title %></h2>
+<%= link_to "Edit Page", edit_page_path(@page) if current_user %><br />
+
+<%= @page.content.html_safe %>

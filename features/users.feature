@@ -59,3 +59,16 @@ Feature: User Management
 		Then I should be on the users page
 		And I should see a success message
 		And I should not see "Tom Haverford" in the users list
+		
+	Scenario: Attempt to add a user without proper permission
+		When I go to the logout page
+		And I go to the new user page
+		Then I should be on the login page
+		And I should see a failure message
+		
+	Scenario: Attempt to edit a user without proper permission
+		Given a user named "Tom Haverford"
+		When I go to the logout page
+		And I go to the edit user page for "Tom Haverford"
+		Then I should be on the login page
+		And I should see a failure message

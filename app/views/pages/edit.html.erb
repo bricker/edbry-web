@@ -1,0 +1,7 @@
+<%= form_for @page, html: { id: "edit_page" } do |f| %>
+	<%= render partial: "page_fields", locals: { page: @page, f: f } %>
+<% end %>
+
+<p>
+	<%= link_to "Delete this page", page_path(@page), method: 'delete', id: 'delete', confirm: "Are you sure you want to delete this page? All content will be lost." %>
+</p>

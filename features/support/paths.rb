@@ -23,6 +23,15 @@ module NavigationHelpers
     when /^the edit page for the post$/
       edit_post_path(@post)
        
+    
+    #### PAGES ####
+    when /^the page's page$/
+      view_page_path(Page.last)
+
+    when /^the edit page for the page$/
+      edit_page_path(@page)
+        
+        
     #### USERS ####
     when /^the users page$/
       users_path

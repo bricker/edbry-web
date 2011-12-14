@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>EdbryWeb</title>
+	<title><%= AppConfig["company"]["name"] %></title>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <nav id="mainNav"><!--
-      <% if current_user %>
-        --><%= link_to "Logout", logout_path, method: 'delete' %><!--
-        --><%= link_to "Manage Users", users_path %><!--
-        <%# More Navigation or whatever for logged in users can go here as well %>
-      <% else %>
-        --><%= link_to "Login", login_path %><!--
-      <% end %>
-      --><%= link_to "Home", root_path %><!--
-      --><%= link_to "Blog", posts_path %><!--
+    <nav id="mainNav"><!-- <%# TODO Find a better solution for the newline problem %>
+	  --><%= link_to "Home", root_path %><!--
+	  --><%= link_to "Blog", posts_path %><!--
+	  <% @pages.each do |page| %>
+	  	--><%= link_to page.title, view_page_path(page) %><!--
+	  <% end %>
+	  <% if current_user %>
+	  	--><%= link_to "Manage Users", users_path %><!--
+	  	--><%= link_to "Add Page", new_page_path %><!--
+	  	--><%= link_to "Logout", logout_path, method: 'delete' %><!--
+	  <% else %>
+	  	--><%= link_to "Login", login_path %><!--
+	  <% end %>
     --></nav>
     <% unless flash.empty? %>
-      <%# These divs won't exist if there are no flash messages sent from the controller name = "notice" or "alert", and msg = the actual flash message I will be using "notice" (success) and "alert" (failure) in the controllers, and the tests look for CSS classes with those names, so it's important to either use those or change them in the tests/controllers if you want to use different names, which I don't recommend because "notice" and "alert" are built into the Rails source to allow some nice functionality %>
       <div id="flash">
         <% flash.each do |name, msg| %>
           <div class="<%= name %>"><%= msg %></div>
@@ -27,6 +29,5 @@
       </div>
     <% end %>
     <%= yield %>
-
   </body>
 </html>

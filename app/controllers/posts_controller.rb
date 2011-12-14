@@ -3,9 +3,7 @@ class PostsController < ApplicationController
   before_filter :get_post, except: [:index, :new, :create]
   
   respond_to :html
-  
-  # TODO make the URLs say /blog via routes
-  
+    
   def index
     @posts = Post.all
   end

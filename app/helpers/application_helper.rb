@@ -3,6 +3,9 @@ module ApplicationHelper
     render(:partial => 'shared/form_errors', :locals => { :object => object }) if object.errors.any?
   end
   
+  def no_records_check(records, name, options = {})
+    options[:message] ||= "There are no #{name} to list." if records.blank?
+  end
   
   def pretty_date(date, options = {})
     time_format = date.strftime("%l:%M%p").downcase

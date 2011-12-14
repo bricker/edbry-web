@@ -10,4 +10,10 @@ FactoryGirl.define do
     title "Blog Post"
     content "Lorem Ipsum"
   end
+  
+  factory :page do
+    text_id "page_title"
+    title "Page Title"
+    content "Page Content"
+  end
 end

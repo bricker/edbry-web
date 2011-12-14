@@ -4,6 +4,7 @@
       <%= link_to user.name, user %> [<%= link_to 'edit', edit_user_path(user) %>]
     </li>
   <% end %>
+  <%= no_records_check(@users, "Users") %>
 </ul>
 
 <p>

@@ -1,0 +1,3 @@
+<%= form_for @page, html: { id: "new_page" } do |f| %>
+	<%= render partial: "page_fields", locals: { page: @page, f: f } %>
+<% end %>

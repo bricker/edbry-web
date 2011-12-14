@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
     self.password = password
   end
   
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
+  
   ####### Password Reset
   def send_password_reset
     generate_token(:password_reset_token)

@@ -1,0 +1,22 @@
+<%= check_for_errors page %>
+<fieldset>
+  <legend><%= page.new_record? ? "Add Page" : "Edit Page" %></legend>
+  <ol>
+	<li>
+      <%= f.label :text_id, "Page ID" %> <%# TODO Come up with a better name for this/better way to describe what it's for. Page Path? %>
+      <%= f.text_field :text_id, placeholder: "for the URL", disabled: !page.new_record? %>
+    </li>
+    <li>
+      <%= f.label :title %> 
+      <%= f.text_field :title %>
+    </li>
+    <li>
+      <%= f.text_area :content, cols: "", rows: "10" %>
+    </li>
+  </ol>
+  </fieldset>
+  <fieldset class="final">
+    <ol>
+      <li><%= f.submit %></li>
+    </ol>
+</fieldset>

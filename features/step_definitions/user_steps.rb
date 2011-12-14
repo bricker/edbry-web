@@ -15,6 +15,10 @@ Given /^I have logged in$/ do
   current_path.should eq(root_path)
 end
 
+Given /^I have not logged in$/ do
+  # nothing... this is just here for the tables
+end
+
 Given /^I have logged in as "([^"]*)"$/ do |name|
   @me ||= Factory(:user)
   visit login_path

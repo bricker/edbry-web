@@ -53,3 +53,27 @@ Feature: Blog Posts
 		Given a post
 		When I go to the post's page
 		Then I should see "Blog Post"
+		
+	Scenario: Attempt to add post without proper permission
+		When I go to the new post page
+		Then I should see the login form
+		And I should see a failure message
+	
+	Scenario: Attempt to edit post without proper permission
+		Given a post
+		When I go to the edit page for the post
+		Then I should see the login form
+		And I should see a failure message
+		
+	Scenario Outline: Link Visibility
+		Given a post
+		And I have <login_status>
+		And I am on the posts page
+		Then I <visibility> see "<link>"
+		
+	Examples: Link Visibility Options
+		| login_status		| visibility	| link		|
+		| not logged in		| should not	| Add Post	|
+		| not logged in		| should not	| Edit Post	|
+		| logged in			| should		| Add Post	|
+		| logged in			| should		| Edit Post	|

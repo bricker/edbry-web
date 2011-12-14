@@ -1,1 +1,10 @@
-<%# TODO fill this out with login information. See /app/mailers/user_mailer.rb %>
+An account has been created for you at <%= AppConfig["company"]["name"] %>.
+
+Login information:
+Name: <%= @user.name %>
+Password: <%= @password %>
+
+To login, visit <%= AppConfig["company"]["domain"] + login_path %> and enter the information above.
+Your password has been randomly generated and encrypted, however it is highly recommended that you change it once you login.
+
+- <%= AppConfig["company"]["name"] %>

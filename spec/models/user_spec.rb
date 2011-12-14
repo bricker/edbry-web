@@ -20,22 +20,14 @@ describe User do
       user.send_password_reset
       last_email.to.should include(user.email)
     end
-  end
+  end # User password reset
   
-  describe "create a user" do
+  describe "creation" do
     let(:user) { Factory(:user) }
     
-    it "creates a new user" do
+    it "occurs with valid attributes entered" do
       user = Factory(:user)
       User.all.count.should eq(1)
-    end
-    
-    it "does not create a new user without a name" do
-      
-    end
-    
-    it "does not create a new user without an email" do
-      
     end
     
     it "encrypts the password" do
@@ -47,10 +39,5 @@ describe User do
       user = Factory(:user, email: "new-user@example.com")
       last_email.to.should include("new-user@example.com")
     end
-  end
-  
-# it "authenticates user" do
-#   user = Factory(:user, email: "authed_user@example.com")
-#   User.authenticate('authed_user@example.com', 'secret').should == user
-# end
+  end # User creation
 end
