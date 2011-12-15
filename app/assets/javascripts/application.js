@@ -7,3 +7,21 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(document).ready(function () {
+  var textarea = $("fieldset textarea"),
+      iWidth = textarea.width(),
+      iHeight = textarea.height();
+  console.log(iWidth);
+  textarea.focus(function() {
+    $(this).animate({
+      width: 500,
+      height: 200
+    }, 'fast')
+  }).blur(function() {
+    $(this).animate({
+      width: iWidth,
+      height: iHeight
+    }, 'fast')
+  });
+})

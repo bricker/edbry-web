@@ -4,36 +4,11 @@
 
 @import "sass_vars.css.scss";
 
-//#flash {
-//  div {
-//    $padding: 20px;
-//    @include boxShadow;
-//
-//    width: 320px - $padding * 2 - 20px;
-//    margin: 0 auto;
-//    padding: $padding;
-//    color: #fff;
-//    text-align: center;
-//  }
-//  
-//  .alert {
-//    $topColor: #c82829;
-//    $bottomColor: darken($topColor, 6%); //ae2324 from a90329
-//    @include vGradient($topColor, $bottomColor);
-//  }
-//  
-//  .notice {
-//    $topColor: #eab700;
-//    $bottomColor: darken($topColor, 6%);
-//    @include vGradient($topColor, $bottomColor);
-//  }
-//}
-
 form {
   width: $iPhoneWidth;
 //  margin: 0px auto;
 //  background: rgba(0, 0, 0, 0.3);
-  padding-top: 20px;
+  padding: 20px 10px;
 }
 
 fieldset {
@@ -92,14 +67,14 @@ fieldset {
       textarea {
         width: $iPhoneWidth - $padding * 2 - 10px;
         height: 100%;
+        font: {
+          size: 14px;
+          weight: normal;
+        }
         border-radius: $borderRad;
       }
       input[type="submit"] {
-        @include button;
         width: $iPhoneWidth - $padding * 2 + 2; // + 2 for lack of horizonal border
-      }
-      input[type="submit"]:active {
-        @include buttonActive;
       }
     } // li
 

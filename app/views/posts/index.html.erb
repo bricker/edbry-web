@@ -3,4 +3,4 @@
   <%= no_records_check(@posts, "Posts") %>
 </div>
 
-<%= link_to "Add Post", new_post_path, class: "new_post" if current_user %>
+<%= link_to "Add Post", new_post_path, class: "button", id: "new_post" if current_user %>

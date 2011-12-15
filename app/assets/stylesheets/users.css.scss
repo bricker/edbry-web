@@ -4,24 +4,19 @@
 
 @import "sass_vars.css.scss";
 
-a.delete_user {
-  @include button(#c82829);
-  color: #fff;
-  font-weight: bold;
-  text-decoration: none;
-  padding: .2em 0;
-  display: block;
+a.delete.button {
   $padding: 10px;
   width: $iPhoneWidth - $padding * 2;
 }
 
-a.delete_user:active {
+a.delete.button:active {
   @include buttonActive(#9D2020);
-  color: #fff;
-  font-weight: bold;
-  text-decoration: none;
-  padding: .2em 0;
-  display: block;
-  $padding: 10px;
-  width: $iPhoneWidth - $padding * 2;
+}
+
+fieldset aside {
+  font-size: .7em;
+  font-style: italic;
+  padding: 0 1em 1em;
+  color: #444;
+  text-shadow: -1px -1px 0 rgba(255,255,255,0.3);
 }

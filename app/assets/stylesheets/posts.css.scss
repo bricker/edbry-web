@@ -32,11 +32,14 @@ article.post {
   }
   
   .edit a {
-    @include button;
     position: absolute;
     right: 10px;
     top: 10px;
     font-size: 14px;
+  }
+  
+  .edit a:active {
+    top: 11px;
   }
   
   .post-content {
@@ -45,10 +48,6 @@ article.post {
   }
 }
 
-a.new_post {
-  @include button;
+a#new_post {
   margin: $padding;
-  &:active {
-    @include buttonActive;
-  }
 }
