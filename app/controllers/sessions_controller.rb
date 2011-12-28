@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  layout 'minimal'
+  
   def new
     redirect_to root_path, notice: "You are logged in as #{@current_user.name}." and return false if current_user # If already logged in, redirect to home page
   end

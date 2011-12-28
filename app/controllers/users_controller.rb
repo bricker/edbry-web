@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :require_login
   before_filter :get_user, except: [:index, :new, :create]
+  layout 'minimal'
   
   respond_to :html
   

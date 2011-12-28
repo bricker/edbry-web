@@ -1,7 +1,8 @@
 class PasswordResetsController < ApplicationController
   before_filter :get_user, only: [:update, :edit]
   before_filter :check_token_expiration, only: [:update, :edit]
-
+  layout 'minimal'
+  
   def create
     user = User.find_by_email(params[:email])
     user.send_password_reset if user

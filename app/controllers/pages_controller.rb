@@ -1,7 +1,10 @@
 class PagesController < ApplicationController
   before_filter :require_login, except: [:show, :index]
   before_filter :get_page, except: [:index, :new, :create]
-  respond_to :html
+  layout 'minimal', except: [:index, :show]
+  layout 'application', only: [:index, :show]
+  
+  respond_to :html, :js
   
   def new
     @page = Page.new

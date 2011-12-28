@@ -1,0 +1,22 @@
+<nav>
+	<% if current_user %>
+		<%= link_to "Users", users_path%> -
+		<%= link_to "Add Post", new_post_path %> -
+		<%= link_to "Add Page", new_page_path %> -
+		<%= link_to "Logout", logout_path %>
+	<% else %>
+		<%= link_to "Login", login_path %>
+	<% end %>
+</nav>
+
+<% unless flash.empty? %>
+  <div id="flash">
+    <% flash.each do |name, msg| %>
+      <div class="<%= name %>"><%= msg %></div>
+    <% end %>
+  </div>
+<% end %>
+
+<div id="page-content">
+	<%= yield %>
+</div>

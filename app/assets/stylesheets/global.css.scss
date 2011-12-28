@@ -58,6 +58,7 @@ a {
     font-size:100%;
     vertical-align:baseline;
     background:transparent;
+		color: #d30587;
 }
 
 /* change colours to suit your needs */
@@ -117,4 +118,16 @@ input, select {
 
 body {
   background: #35414C;
+}
+
+#page-content {
+	color: #fff;
+}
+
+#flash .notice {
+	color: #0F0;
+}
+
+#flash .alert {
+	color: #F00;
 }

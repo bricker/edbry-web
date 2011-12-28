@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
   before_filter :require_login, except: [:index, :show]
   before_filter :get_post, except: [:index, :new, :create]
+  layout 'minimal', except: [:index, :show]
+  layout 'application', only: [:index, :show]
   
-  respond_to :html
+  respond_to :html, :js
     
   def index
     @posts = Post.all

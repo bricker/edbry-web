@@ -1,6 +1,3 @@
-<div id="posts">
-  <%= render @posts %>
-  <%= no_records_check(@posts, "Posts") %>
-</div>
+<%= render partial: 'index', locals: { posts: @posts } %>
 
-<%= link_to "Add Post", new_post_path, class: "button", id: "new_post" if current_user %>
+<%# This file is just for HTML requests %>
