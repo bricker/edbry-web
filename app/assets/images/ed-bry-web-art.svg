@@ -133,7 +133,7 @@
 			c-1.823,0.977-3.606,2.077-5.327,3.328C0.907,91.347-3.607,119.846,11.186,140.207c14.793,20.359,43.291,24.874,63.652,10.081
 			c1.721-1.25,3.32-2.605,4.811-4.038C59.892,156.827,34.866,151.48,21.324,132.84z"/>
 	</g> <!-- about -->
-	<g id="Moon_1_">
+	<g id="Moon_1_" transform="translate(0,0)rotate(0)">
 		<g id="Main_1_">
 			<circle fill="#CABEB3" cx="152.857" cy="25.815" r="16"/>
 			<path fill="#CABEB3" d="M152.857,10.676c8.361,0,15.14,6.777,15.14,15.139c0,8.362-6.778,15.141-15.14,15.141
@@ -188,7 +188,7 @@
 	<circle id="Middle" clip-path="url(#Mask_1_)" fill="#D6BD54" cx="2057.882" cy="500" r="2017.882"/>
 	<circle id="Inner_1_" clip-path="url(#Mask_1_)" fill="#E2DA7E" cx="2057.882" cy="500" r="1985.882"/>
 </g>
-<g id="SunAlt" transform="translate(907,0)">
+<g id="SunAlt" transform="translate(987,0)">
 	<circle id="Outer_2_" fill="#CCA529" cx="2057.882" cy="500" r="2049.051"/>
 	<circle id="Middle_2_" fill="#D6BD54" cx="2057.882" cy="500" r="2017.882"/>
 	<circle id="Inner_2_" fill="#E2DA7E" cx="2057.882" cy="500" r="1985.882"/>
