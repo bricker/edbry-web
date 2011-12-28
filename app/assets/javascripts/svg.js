@@ -4,14 +4,14 @@ $(document).ready(function() {
   winWidth = $(document).innerWidth();
   winHeight = $(document).innerHeight();
   $("#allSVG").svg({ loadURL: 'assets/art.svg', onLoad: afterLoad });
-}) //$(document).ready(function()
+});
   
 function afterLoad(svg) {
-  registerEvents();
+  registerEvents(svg);
   drawStars(svg);
 }
   
-function registerEvents() {
+function registerEvents(svg) {
   zoomTime = 4000; // time in ms to zoom in or out
   $("#Brown_x5F_Planet").click(function() {
     $("svg#spaceArt").animate({
@@ -30,6 +30,9 @@ function registerEvents() {
       svgViewBox: '280, 398.8, 50, 50',
       // svgTransform: 'rotate(45,200,100)'
       }, zoomTime),
+    $("#Rocket").animate({
+      svgTransform: 'translate(520,0)'
+      }, zoomTime)
     moveTitle("up");
   });
   $("#Purple_x5F_Planet").click(function() {
@@ -53,12 +56,20 @@ function registerEvents() {
       }, zoomTime),
     moveTitle("up");
   });
+  
+  $("#Moon_1_").click(function() {
     
+    $(this).animate({
+      svgTransform: 'rotate(360, 200, 100)',
+      }, zoomTime)
+  });
+  
   $("#title").click(function() {
     $("svg#spaceArt").animate({
       svgViewBox: '0, 0, 1605, 1000'
       }, zoomTime/2),
     $("#Ring_Back, #Ring_Front").animate({ opacity: 1 }, zoomTime/2),
+    $("#Rocket").animate({ svgTransform: 'translate(325.757,386.58)' }, zoomTime/2),
     moveTitle("down");
   });
 }
@@ -70,8 +81,7 @@ function moveTitle (direction) {
     $("#title").animate({'top': 181}, 2000)
   };
 }
-  
-    
+
 function drawStars (svg) {
   var starsGroup = $("#starsGroup");
   for (var i = 200 - 1; i >= 0; i--){
