@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-	<title><%= AppConfig["company"]["name"] %></title>
+    <title><%= AppConfig["company"]["name"] %></title>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
     <!--[if lt IE 9]>
@@ -10,27 +10,12 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <nav id="mainNav"><!-- <%# TODO Find a better solution for the newline problem %>
-	  --><%= link_to "Home", root_path %><!--
-	  --><%= link_to "Blog", posts_path %><!--
-	  <% @pages.each do |page| %>
-	  	--><%= link_to page.title, view_page_path(page) %><!--
-	  <% end %>
-	  <% if current_user %>
-	  	--><%= link_to "Manage Users", users_path %><!--
-	  	--><%= link_to "Add Page", new_page_path %><!--
-	  	--><%= link_to "Logout", logout_path, method: 'delete' %><!--
-	  <% else %>
-	  	--><%= link_to "Login", login_path %><!--
-	  <% end %>
-    --></nav>
-    <% unless flash.empty? %>
-      <div id="flash">
-        <% flash.each do |name, msg| %>
-          <div class="<%= name %>"><%= msg %></div>
-        <% end %>
-      </div>
-    <% end %>
+    <div id="allSVG">
+      <svg version="1.1" id="stars" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" xml:space="preserve">
+        <g id="starsGroup"></g>
+      </svg>
+      <div id="title"><span class="small">the</span> <span class="big">expandable web</span></div>
+    </div>
     <%= yield %>
   </body>
 </html>

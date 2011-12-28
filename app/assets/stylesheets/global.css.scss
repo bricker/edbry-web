@@ -112,78 +112,9 @@ input, select {
 
 *::selection, *::-moz-selection {
   text-shadow: none;
-  background: #EFF374;
+  background: #E6E6E6;
 }
 
 body {
-  background: #ccc;
-  color: #000;
-  font-size: 20px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-rendering: optimizelegibility;
-  min-width: 320px;
-}
-
-a {
-  color: inherit;
-}
-
-#flash {
-  div {
-    $padding: 20px;
-    @include boxShadow;
-
-    width: 320px - $padding * 2 - 20px;
-    margin: 0 auto;
-    padding: $padding;
-    color: #fff;
-    text-align: center;
-  }
-  
-  .alert {
-    $topColor: #c82829;
-    $bottomColor: darken($topColor, 6%); //ae2324 from a90329
-    @include vGradient($topColor, $bottomColor);
-  }
-  
-  .notice {
-    $topColor: #eab700;
-    $bottomColor: darken($topColor, 6%);
-    @include vGradient($topColor, $bottomColor);
-  }
-}
-
-.button, input[type="submit"] {
-  @include button;
-}
-
-.button:active, input[type="submit"]:active {
-  @include buttonActive;
-}
-
-.delete.button {
-  @include button(#c82829);
-  color: #fff;
-  font-weight: bold;
-  text-decoration: none;
-  padding: .2em 0;
-  display: block;
-}
-
-nav#mainNav {
-  background: #000;
-  color: #fff;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
-}
-
-nav#mainNav a {
-  font-size: .7em;
-  display: inline-block;
-  padding: .8em;
-  border-right: 1px solid #474747;
-  text-decoration: none;
-}
-
-nav#mainNav a:hover {
-  background: #444;
+  background: #35414C;
 }

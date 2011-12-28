@@ -1,22 +1,3 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-@import "sass_vars.css.scss";
-
-a.delete.button {
-  $padding: 10px;
-  width: $iPhoneWidth - $padding * 2;
-}
-
-a.delete.button:active {
-  @include buttonActive(#9D2020);
-}
-
-fieldset aside {
-  font-size: .7em;
-  font-style: italic;
-  padding: 0 1em 1em;
-  color: #444;
-  text-shadow: -1px -1px 0 rgba(255,255,255,0.3);
-}
