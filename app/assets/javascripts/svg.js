@@ -3,7 +3,7 @@ var winWidth, winHeight;
 $(document).ready(function() {
   winWidth = $(document).innerWidth();
   winHeight = $(document).innerHeight();
-  $("#allSVG").svg({ loadURL: 'assets/ed-bry-web-art.svg', onLoad: afterLoad });
+  $("#allSVG").svg({ loadURL: 'assets/art.svg', onLoad: afterLoad });
 }) //$(document).ready(function()
   
 function afterLoad(svg) {
@@ -16,8 +16,14 @@ function registerEvents() {
   $("#Brown_x5F_Planet").click(function() {
     $("svg#spaceArt").animate({
       svgViewBox: '108, 449.8, 30, 30'
-      }, zoomTime)
+      }, zoomTime),
     moveTitle("up");
+
+		$.ajax({
+	  	type : 'GET',
+	  	url : '/about',
+	  	dataType : 'script'
+	  });
   });
   $("#Orange_x5F_Planet").click(function() {
     $("svg#spaceArt").animate({
