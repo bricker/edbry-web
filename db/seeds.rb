@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-user = User.new name: "Admin"
+user = User.new name: "Admin", email: AppConfig["company"]["email"]
 user.password_digest = "$2a$10$HoGLRvf3BR3.eROLYtBY5uPNcsKEKzqeLrTgatPcgLYiHMkRAaD8W"
 user.save
 
