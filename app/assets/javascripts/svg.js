@@ -4,27 +4,28 @@ zoomTime = 4000; // time in ms to zoom in or out
 $(document).ready(function() {
   winWidth = $(document).innerWidth();
   winHeight = $(document).innerHeight();
-  $("#allSVG").svg({ loadURL: 'assets/art.svg', onLoad: afterLoad });
+  $("#allSVG").svg({ loadURL: 'assets/objects-in-space.svg', onLoad: afterLoad });
 });
 
-var starSpeed = 40000;
+var starSpeed = 1000 * 60 * 10;
 var starOffset = 100;
 var starI = 1;
 
 function rotateStars() {
-	  $("#starsGroup").animate({
-    	svgTransform: 'translate('+starOffset+', '+-starOffset+') rotate('+10*starI+')'
-    }, starSpeed);
-		starI *= -1;
-		starOffset *= starI;
+  $("#starsGroup").attr('transform', 'rotate(0)');
+  $("#starsGroup").animate({
+    svgTransform: 'translate(' + winWidth/2 + ' ' + winHeight/2 + ')rotate(360)'
+  }, starSpeed, 'linear');
+  starI *= -1;
+  starOffset *= starI;
 
-		setTimeout("rotateStars()", starSpeed);
+  setTimeout("rotateStars()", starSpeed + 10);
 }
 
 function afterLoad(svg) {
   registerEvents(svg);
   drawStars(svg);
-	rotateStars();
+  // rotateStars();
 }
   
 function registerEvents(svg) {
@@ -35,11 +36,11 @@ function registerEvents(svg) {
 
     moveTitle("up");
 
-		$.ajax({
-	  	type : 'GET',
-	  	url : '/about',
-	  	dataType : 'script'
-	  });
+    $.ajax({
+      type : 'GET',
+      url : '/about',
+      dataType : 'script'
+    });
   });
 
   $("#Orange_x5F_Planet").click(function() {
@@ -53,12 +54,12 @@ function registerEvents(svg) {
       }, zoomTime);
 
     moveTitle("up");
-		
-		$.ajax({
-	  	type : 'GET',
-	  	url : '/portfolio',
-	  	dataType : 'script'
-	  });
+    
+    $.ajax({
+      type : 'GET',
+      url : '/portfolio',
+      dataType : 'script'
+    });
   });
 
   $("#Purple_x5F_Planet").click(function() {
@@ -72,11 +73,11 @@ function registerEvents(svg) {
 
     moveTitle("up");
 
-		$.ajax({
-	  	type : 'GET',
-	  	url : '/portfolio',
-	  	dataType : 'script'
-	  });
+    $.ajax({
+      type : 'GET',
+      url : '/portfolio',
+      dataType : 'script'
+    });
   });
 
   $("#Grey_x5F_Planet").click(function() {
@@ -86,15 +87,15 @@ function registerEvents(svg) {
 
     moveTitle("up");
 
-		$.ajax({
-	  	type : 'GET',
-	  	url : '/blog',
-	  	dataType : 'script'
-	  });
+    $.ajax({
+      type : 'GET',
+      url : '/blog',
+      dataType : 'script'
+    });
   });
 
   $("#Blue_x5F_Planet").click(function() {
-		$("#starsGroup").animate({
+    $("#starsGroup").animate({
       svgTransform: 'translate(-100)'
       }, zoomTime);
 
@@ -104,11 +105,11 @@ function registerEvents(svg) {
 
     moveTitle("up");
 
-		$.ajax({
-	  	type : 'GET',
-	  	url : '/contact',
-	  	dataType : 'script'
-	  });
+    $.ajax({
+      type : 'GET',
+      url : '/contact',
+      dataType : 'script'
+    });
   });
   
   $("#Moon_1_").click(function() {
@@ -127,11 +128,11 @@ function registerEvents(svg) {
     $("#Rocket").animate({ svgTransform: 'translate(325.757,386.58)' }, zoomTime/2);
     moveTitle("down");
 
-		$.ajax({
-	  	type : 'GET',
-	  	url : '/pages',
-	  	dataType : 'script'
-	  });
+    $.ajax({
+      type : 'GET',
+      url : '/pages',
+      dataType : 'script'
+    });
   });
 }
   
@@ -148,7 +149,9 @@ function drawStars (svg) {
   for (var i = 200 - 1; i >= 0; i--){
     var cx = Math.random() * winWidth,
         cy = Math.random() * winHeight,
-        r = Math.random() * 3;
-    svg.circle(starsGroup, cx, cy, r, {fill: "#fff"});
+        r = Math.random() * 2 + 1;
+        // c = Math.round((r-1)/2 * 127 + 127); // make between 0 & 1 and then scale to 0 & 255
+        // c = '#' + c.toString(16) + c.toString(16) + c.toString(16); // convert to hex color
+    svg.circle(starsGroup, cx, cy, r/*,  {fill: c} */);
   };
 }

@@ -9,7 +9,6 @@
   left: 18px;
   color: #CABEB3;
   text-shadow: 0 2pt 0 #E8E2DD;
-  z-index: 1000;
   min-width: 700px;
 }
   
@@ -27,4 +26,16 @@
   height: 100%;
   min-height: 1000px;
   min-width: 1000px;
+}
+
+#stars {
+  z-index: -1000;
+}
+
+#stars circle {
+  fill: #fff;
+}
+
+#spaceArt {
+  z-index: -500;
 }
