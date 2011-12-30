@@ -7,6 +7,7 @@ $(document).ready(function() {
   $("#allSVG").svg({ loadURL: 'assets/objects-in-space.svg', onLoad: afterLoad });
 });
 
+/*
 var starSpeed = 1000 * 60 * 10;
 var starOffset = 100;
 var starI = 1;
@@ -21,11 +22,18 @@ function rotateStars() {
 
   setTimeout("rotateStars()", starSpeed + 10);
 }
+*/
 
 function afterLoad(svg) {
   registerEvents(svg);
   drawStars(svg);
   // rotateStars();
+}
+
+function moveStars(x, y, speed) {
+	$("#starsGroup").animate({
+    svgTransform: 'translate('+x+', '+y+')'
+    }, speed);
 }
   
 function registerEvents(svg) {
@@ -34,6 +42,7 @@ function registerEvents(svg) {
       svgViewBox: '108, 449.8, 30, 30'
       }, zoomTime);
 
+		moveStars(150, -50, zoomTime);
     moveTitle("up");
 
     $.ajax({
@@ -53,6 +62,7 @@ function registerEvents(svg) {
       svgTransform: 'translate(520,0)'
       }, zoomTime);
 
+		moveStars(100, -25, zoomTime);
     moveTitle("up");
     
     $.ajax({
@@ -71,6 +81,7 @@ function registerEvents(svg) {
         opacity: 0.3
       }, zoomTime);
 
+		moveStars(20, -50, zoomTime);
     moveTitle("up");
 
     $.ajax({
@@ -80,11 +91,12 @@ function registerEvents(svg) {
     });
   });
 
-  $("#Grey_x5F_Planet").click(function() {
+  $("#Grey_x5F_Planet").click(function() {	
     $("svg#spaceArt").animate({
       svgViewBox: '642, 476.95, 20, 20'
       }, zoomTime);
 
+		moveStars(-50, -75, zoomTime);
     moveTitle("up");
 
     $.ajax({
@@ -95,14 +107,11 @@ function registerEvents(svg) {
   });
 
   $("#Blue_x5F_Planet").click(function() {
-    $("#starsGroup").animate({
-      svgTransform: 'translate(-100)'
-      }, zoomTime);
-
     $("svg#spaceArt").animate({
       svgViewBox: '767, 436.05, 39, 39'
       }, zoomTime);
 
+		moveStars(-100, -50, zoomTime);
     moveTitle("up");
 
     $.ajax({
@@ -126,7 +135,9 @@ function registerEvents(svg) {
 
     $("#Ring_Back, #Ring_Front").animate({ opacity: 1 }, zoomTime/2);
     $("#Rocket").animate({ svgTransform: 'translate(325.757,386.58)' }, zoomTime/2);
-    moveTitle("down");
+    
+		moveStars(0,0, zoomTime/2);
+		moveTitle("down");
 
     $.ajax({
       type : 'GET',

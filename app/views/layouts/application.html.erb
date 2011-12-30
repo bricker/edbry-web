@@ -10,7 +10,7 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div id="title"><span class="small">the</span> <span class="big">expandable web</span></div>
+    <div id="title"><span class="small">the</span><%= AppConfig['company']['name'].downcase %></span></div>
     <div id="allSVG">
       <svg version="1.1" id="stars" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" x="0px" y="0px">
         <g id="starsGroup">
