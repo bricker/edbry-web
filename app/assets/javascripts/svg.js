@@ -36,7 +36,7 @@ function moveStars(x, y, speed) {
     }, speed);
 }
   
-function registerEvents(svg) {
+function registerEvents(svg) { // TODO Maybe: Do the animations AFTER the content as been loaded, to avoid blank pages should an error occur.
   $("#Brown_x5F_Planet").click(function() {
     $("svg#spaceArt").animate({
       svgViewBox: '108, 449.8, 30, 30'
