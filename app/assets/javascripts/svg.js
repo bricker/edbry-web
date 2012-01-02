@@ -70,14 +70,14 @@ function registerEvents(svg) { // TODO Maybe: Do the animations AFTER the conten
     BrownPlanet.zoom(108, 449.8, 30, 30, zoomTime);
     moveStars(150, -50, zoomTime);
     moveTitle("up");
-    loadContent('/about')
+    loadContent('/about');
   });
 
   $("#Orange_x5F_Planet").click(function() {
     OrangePlanet.zoom(280, 398.8, 50, 50, zoomTime);
     moveStars(100, -25, zoomTime);
     moveTitle("up");
-    loadContent('/portfolio')
+    loadContent('/portfolio');
     
     $("#Rocket").animate({
       svgTransform: 'translate(520,0)'
@@ -89,7 +89,7 @@ function registerEvents(svg) { // TODO Maybe: Do the animations AFTER the conten
     PurplePlanet.zoom(488, 440, 36, 36, zoomTime);
     moveStars(20, -50, zoomTime);
     moveTitle("up");
-    loadContent('/projects')
+    loadContent('/projects');
 
     $("#Ring_Back, #Ring_Front").animate({
         opacity: 0.3
@@ -107,12 +107,12 @@ function registerEvents(svg) { // TODO Maybe: Do the animations AFTER the conten
     BluePlanet.zoom(767, 436.05, 39, 39, zoomTime);
     moveStars(-100, -50, zoomTime);
     moveTitle("up");
-    loadContent('/contact')
+    loadContent('/contact');
   });
   
   $("#Moon_1_").click(function() {
     $(this).animate({
-      svgTransform: 'rotate(360, 200, 100)',
+      svgTransform: 'rotate(360, 200, 100)'
       }, zoomTime
     )
   });
@@ -129,7 +129,7 @@ function registerEvents(svg) { // TODO Maybe: Do the animations AFTER the conten
     
       moveStars(0,0, zoomTime/2);
       moveTitle("down");
-      loadContent('/pages')
+      loadContent('/pages');
     };
   });
 }
