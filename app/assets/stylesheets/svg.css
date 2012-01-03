@@ -1,25 +1,7 @@
 #allSVG {
   position:relative;
 }
-  
-#title {
-  font: 60px "Vegur-Medium", "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
-  position: absolute;
-  top: 181px;
-  left: 18px;
-  color: #CABEB3;
-  text-shadow: 0 2pt 0 #E8E2DD;
-  min-width: 700px;
-}
-  
-#title .small {
-  font-size: .5em;
-  vertical-align: top;
-  text-shadow: none;
-  color: #E8E2DD;
-  visibility: hidden;
-}
-  
+
 #allSVG svg, #allSVG object {
   position: absolute;
   width: 100%;
@@ -39,3 +21,9 @@
 #spaceArt {
   z-index: -500;
 }
+
+#Brown_x5F_Planet,
+#Orange_x5F_Planet,
+#Purple_x5F_Planet,
+#Grey_x5F_Planet,
+#Blue_x5F_Planet { cursor: pointer; }

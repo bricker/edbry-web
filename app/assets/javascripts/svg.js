@@ -5,7 +5,7 @@ var zoomTime = 4000; // time in ms to zoom in or out
 $(document).ready(function() {
   winWidth = $(document).innerWidth();
   winHeight = $(document).innerHeight();
-  $("#allSVG").svg({ loadURL: 'assets/objects-in-space.svg', onLoad: afterLoad });
+  $('#allSVG').svg({ loadURL: 'assets/objects-in-space.svg', onLoad: afterLoad });
 });
 
 Planet = function(parentSVG) {
@@ -25,14 +25,14 @@ var starOffset = 100;
 var starI = 1;
 
 function rotateStars() {
-  $("#starsGroup").attr('transform', 'rotate(0)');
-  $("#starsGroup").animate({
+  $('#starsGroup').attr('transform', 'rotate(0)');
+  $('#starsGroup').animate({
     svgTransform: 'translate(' + winWidth/2 + ' ' + winHeight/2 + ')rotate(360)'
   }, starSpeed, 'linear');
   starI *= -1;
   starOffset *= starI;
 
-  setTimeout("rotateStars()", starSpeed + 10);
+  setTimeout('rotateStars()', starSpeed + 10);
 }
 */
 
@@ -40,7 +40,7 @@ function afterLoad(svg) {
   registerEvents(svg);
   drawStars(svg);
   
-  parentSVG = $("svg#spaceArt");
+  parentSVG = $('svg#spaceArt');
   BrownPlanet = new Planet(parentSVG);
   OrangePlanet = new Planet(parentSVG);
   PurplePlanet = new Planet(parentSVG);
@@ -51,7 +51,7 @@ function afterLoad(svg) {
 }
 
 function moveStars(x, y, speed) {
-  $("#starsGroup").animate({
+  $('#starsGroup').animate({
     svgTransform: 'translate('+x+', '+y+')'
     }, speed);
 }
@@ -66,93 +66,145 @@ function loadContent(path) {
 
 function registerEvents(svg) { // TODO Maybe: Do the animations AFTER the content as been loaded, to avoid blank pages should an error occur.
                               // Edward's note: this happens already because this function is called in the $(document).ready block.
-  $("#Brown_x5F_Planet").click(function() {
+  $('#Brown_x5F_Planet,a[href="/about"]').click(function(e) {
     BrownPlanet.zoom(108, 449.8, 30, 30, zoomTime);
     moveStars(150, -50, zoomTime);
-    moveTitle("up");
+    moveTitle('up');
     loadContent('/about');
+    e.preventDefault();
   });
 
-  $("#Orange_x5F_Planet").click(function() {
+  $('#Orange_x5F_Planet,a[href="/portfolio"]').click(function(e) {
     OrangePlanet.zoom(280, 398.8, 50, 50, zoomTime);
     moveStars(100, -25, zoomTime);
-    moveTitle("up");
+    moveTitle('up');
     loadContent('/portfolio');
+    e.preventDefault();
     
-    $("#Rocket").animate({
+    $('#Rocket').animate({
       svgTransform: 'translate(520,0)'
       }, zoomTime
     );
   });
 
-  $("#Purple_x5F_Planet").click(function() {
+  $('#Purple_x5F_Planet,a[href="/projects"]').click(function(e) {
     PurplePlanet.zoom(488, 440, 36, 36, zoomTime);
     moveStars(20, -50, zoomTime);
-    moveTitle("up");
+    moveTitle('up');
     loadContent('/projects');
+    e.preventDefault();
 
-    $("#Ring_Back, #Ring_Front").animate({
+    $('#Ring_Back, #Ring_Front').animate({
         opacity: 0.3
       }, zoomTime);
   });
 
-  $("#Grey_x5F_Planet").click(function() {
+  $('#Grey_x5F_Planet,a[href="/blog"]').click(function(e) {
     GreyPlanet.zoom(642, 476.95, 20, 20, zoomTime);
     moveStars(-50, -75, zoomTime);
-    moveTitle("up");
+    moveTitle('up');
     loadContent('/blog');
+    e.preventDefault();
   });
 
-  $("#Blue_x5F_Planet").click(function() {
+  $('#Blue_x5F_Planet,a[href="/contact"]').click(function(e) {
     BluePlanet.zoom(767, 436.05, 39, 39, zoomTime);
     moveStars(-100, -50, zoomTime);
-    moveTitle("up");
+    moveTitle('up');
     loadContent('/contact');
+    e.preventDefault();
   });
   
-  $("#Moon_1_").click(function() {
+  $('#Moon_1_').click(function(e) {
     $(this).animate({
       svgTransform: 'rotate(360, 200, 100)'
       }, zoomTime
     )
   });
   
-  $("#title").click(function() {
-    if (document.body.classList.length > 0) {
-      $("svg#spaceArt").animate({
+  function zoomedIn () {
+    if ($('body.zoomedIn').length) { // if the body has a class of zoomedIn
+      return true;
+    } else {
+      return false;
+    }
+  }
+  
+  $('#back').click(function(e) {
+    if (zoomedIn()) { // if the body has a class of zoomedIn
+      $('svg#spaceArt').animate({
         svgViewBox: '0, 0, 1605, 1000'
         }, zoomTime/2
       );
     
-      $("#Ring_Back, #Ring_Front").animate({ opacity: 1 }, zoomTime/2);
-      $("#Rocket").animate({ svgTransform: 'translate(325.757,386.58)' }, zoomTime/2);
+      $('#Ring_Back, #Ring_Front').animate({ opacity: 1 }, zoomTime/2);
+      $('#Rocket').animate({ svgTransform: 'translate(325.757,386.58)' }, zoomTime/2);
     
       moveStars(0,0, zoomTime/2);
-      moveTitle("down");
+      moveTitle('down');
       loadContent('/pages');
-    };
+    }; // if zoomedIn()
   });
-}
+  
+  var mouseOverT, mouseOutT;
+  
+  $('body,.planet').hover(function() {
+    clearTimeout(mouseOutT);
+    mouseOverT = setTimeout(navAppear, 1000);
+  }, function() {
+    clearTimeout(mouseOverT);
+    mouseOutT = setTimeout(navDisappear, 2000);
+  })
+  
+  navAppear = function() {
+    $('.zoomedOut #page-content>nav').css({
+      top: '670'
+    }).animate({
+      top: '620',
+      opacity: 1
+    }, 400)
+  }
+  
+  navDisappear = function() {
+    $('.zoomedOut #page-content>nav').animate({
+      top: '570',
+      opacity: 0
+      }, 200)
+  }
+
+  $('.planet').click(function() {
+    clearTimeout(mouseOverT);
+    clearTimeout(mouseOutT);
+    $('.zoomedOut #page-content>nav').animate({
+      top: '700',
+      opacity: 0
+      }, 1000)
+  });
+  
+} // registerEvents
   
 function moveTitle (direction) {
-  moveTime = 2000;
-  if (direction == "up") {
+  moveTime = zoomTime/2;
+  if (direction == 'up') {
     $('#title').animate({'top': 40}, moveTime);
+    
+    $('body').removeClass('zoomedOut')
     setTimeout(function() {
       $('body').addClass('zoomedIn');
-      }, zoomTime
-    )
-  } else if (direction == "down") {
-    $("#title").animate({'top': 181}, moveTime)
+    }, zoomTime);
+    
+  } else if (direction == 'down') {
+    $('#title').animate({'top': 181}, moveTime);
+    
+    $('body').removeClass('zoomedIn');
     setTimeout(function() {
-      $('body').removeClass('zoomedIn');
-      }, zoomTime
-    )
+      $('body').addClass('zoomedOut');
+    }, moveTime);
   };
 }
 
 function drawStars (svg) {
-  var starsGroup = $("#starsGroup");
+  var starsGroup = $('#starsGroup');
   for (var i = 280 - 1; i >= 0; i--){
     var cx = (Math.random() - 0.2) * winWidth * 1.4,
         cy = (Math.random() - 0.2) * winHeight * 1.4,

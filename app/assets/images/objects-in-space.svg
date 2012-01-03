@@ -3,7 +3,7 @@
 <!-- <g id="allButStars" transform="scale(25)translate(-480,-440)"> -->
 <g id="stars"></g>
 <g id="Planets" transform="translate(83.883, 398.433)">
-	<g id="Blue_x5F_Planet">
+	<g id="Blue_x5F_Planet" class="planet">
 		<g id="Planet_2_">
 			<circle fill="#2C74B5" cx="714.237" cy="113.42" r="56"/>
 			<path fill="#2C74B5" d="M714.193,58.354c17.028-0.001,33.817,7.872,44.592,22.702c17.874,24.602,12.421,59.036-12.183,76.911
@@ -41,7 +41,7 @@
 			c2.027-1.473,2.478-4.311,1.004-6.337c-1.474-2.027-4.311-2.478-6.337-1.004c-1.211,0.881-1.858,2.248-1.869,3.639
 			C709.274,73.518,709.84,72.459,710.812,71.753z"/>
 	</g> <!-- contact -->
-	<g id="Grey_x5F_Planet">
+	<g id="Grey_x5F_Planet" class="planet">
 		<g id="Planet_3_">
 			<circle fill="#7E7E7F" cx="574.675" cy="113.42" r="25"/>
 			<path fill="#7E7E7F" d="M574.655,89.367c7.438,0,14.771,3.438,19.478,9.916c7.808,10.746,5.426,25.786-5.32,33.594
@@ -72,7 +72,7 @@
 			<circle id="Operational" opacity="0.3" enable-background="new    " cx="585.67" cy="103.09" r="7.567"/>
 		</g>
 	</g> <!-- blog -->
-	<g id="Purple_x5F_Planet">
+	<g id="Purple_x5F_Planet" class="planet">
 		<path id="Ring_Back" fill="none" stroke="#BFBFBF" stroke-width="3" d="M400.401,178.523c-13.64-6.754-10.265-41.377,7.538-77.334
 			c17.802-35.956,43.292-59.63,56.932-52.875"/>
 		<g id="Planet">
@@ -90,7 +90,7 @@
 		<path id="Ring_Front" fill="none" stroke="#BFBFBF" stroke-width="3" d="M464.871,48.312c13.642,6.754,10.267,41.376-7.538,77.332
 			c-17.802,35.958-43.291,59.633-56.932,52.878"/>
 	</g> <!-- indipendant projects -->
-	<g id="Orange_x5F_Planet">
+	<g id="Orange_x5F_Planet" class="planet">
 		<g id="Planet_1_">
 			<circle fill="#DBA73E" cx="239.572" cy="113.42" r="87"/>
 			<path fill="#DBA73E" d="M239.502,26.704c26.814-0.001,53.253,12.396,70.22,35.749c28.147,38.743,19.559,92.967-19.185,121.116
@@ -104,7 +104,7 @@
 			c-3.403,1.833-6.724,3.908-9.938,6.242c-38.741,28.147-47.331,82.372-19.182,121.115c28.148,38.742,82.374,47.33,121.115,19.184
 			c3.214-2.334,6.215-4.853,9.009-7.521C261.926,196.314,214.183,186.15,188.37,150.621z"/>
 	</g> <!-- client work -->
-	<g id="Brown_x5F_Planet">
+	<g id="Brown_x5F_Planet" class="planet">
 		<g id="Planet_4_">
 			<circle fill="#825F3D" cx="48.052" cy="113.42" r="46"/>
 			<path fill="#825F3D" d="M48.015,67.847c14.093,0,27.987,6.516,36.904,18.788c14.793,20.361,10.279,48.859-10.082,63.652
