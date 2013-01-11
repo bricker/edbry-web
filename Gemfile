@@ -1,13 +1,13 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.1'
-gem 'paperclip'
+gem 'rails'
+gem 'paperclip', "~> 2.7.0"
 gem 'jquery-rails'
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby'
 
 group :assets do
-  gem 'sass-rails',   '~> 3.1.4'
-  gem 'uglifier', '>= 1.0.3'
+  gem 'sass-rails'
+  gem 'uglifier'
 end
 
 group :production do

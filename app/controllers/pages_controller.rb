@@ -36,7 +36,6 @@ class PagesController < ApplicationController
   private
     def get_page
       @page = Page.find_by_text_id(params[:id])
-      rescue ActiveRecord::RecordNotFound
-        redirect_to root_path, alert: "Page not found."
+      redirect_to root_path, alert: "Page not found." and return false if !@page
     end
 end
