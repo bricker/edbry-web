@@ -1,20 +1,18 @@
 var winWidth, winHeight;
 var BrownPlanet, OrangePlanet, PurplePlanet, GreyPlanet, BluePlanet;
 var zoomTime = 4000; // time in ms to zoom in or out
- 
-$(document).ready(function() {
-  winWidth = $(document).innerWidth();
-  winHeight = $(document).innerHeight();
-  $('#allSVG').svg({ loadURL: 'assets/objects-in-space.svg', onLoad: afterLoad });
-});
+var backArea = $('#back').height();
 
 Planet = function(parentSVG) {
-  var svg = parentSVG;
+  svg = parentSVG;
+  this.pageURL = "";
   return {
     zoom: function(x, y, w, h, t) {
+      zoomNav();
+      loadContent(this.pageURL);
       svg.animate({
         svgViewBox: x + ',' + y + ',' + w + ',' + h
-      }, t)
+      }, t);
     } // zoom
   }
 }
@@ -41,11 +39,19 @@ function afterLoad(svg) {
   drawStars(svg);
   
   parentSVG = $('svg#spaceArt');
+  
   BrownPlanet = new Planet(parentSVG);
+    BrownPlanet.pageURL = "/about";
   OrangePlanet = new Planet(parentSVG);
+    OrangePlanet.pageURL = "/portfolio";
   PurplePlanet = new Planet(parentSVG);
+    PurplePlanet.pageURL = "/projects";
   GreyPlanet = new Planet(parentSVG);
+    GreyPlanet.pageURL = "/blog";
   BluePlanet = new Planet(parentSVG);
+    BluePlanet.pageURL = "/contact";
+  
+  backArea = $('#back').height();
   
   // rotateStars();
 }
@@ -61,7 +67,14 @@ function loadContent(path) {
     type : 'GET',
     url : path,
     dataType : 'script'
-  });
+  }); // $.ajax
+}
+
+function zoomNav() {
+  $('#page-content>nav').animate({
+    top: '700',
+    opacity: 0
+  }, 1000);
 }
 
 function registerEvents(svg) { // TODO Maybe: Do the animations AFTER the content as been loaded, to avoid blank pages should an error occur.
@@ -70,7 +83,7 @@ function registerEvents(svg) { // TODO Maybe: Do the animations AFTER the conten
     BrownPlanet.zoom(108, 449.8, 30, 30, zoomTime);
     moveStars(150, -50, zoomTime);
     moveTitle('up');
-    loadContent('/about');
+    // loadContent('/about');
     e.preventDefault();
   });
 
@@ -78,7 +91,7 @@ function registerEvents(svg) { // TODO Maybe: Do the animations AFTER the conten
     OrangePlanet.zoom(280, 398.8, 50, 50, zoomTime);
     moveStars(100, -25, zoomTime);
     moveTitle('up');
-    loadContent('/portfolio');
+    // loadContent('/portfolio');
     e.preventDefault();
     
     $('#Rocket').animate({
@@ -91,7 +104,7 @@ function registerEvents(svg) { // TODO Maybe: Do the animations AFTER the conten
     PurplePlanet.zoom(488, 440, 36, 36, zoomTime);
     moveStars(20, -50, zoomTime);
     moveTitle('up');
-    loadContent('/projects');
+    // loadContent('/projects');
     e.preventDefault();
 
     $('#Ring_Back, #Ring_Front').animate({
@@ -103,7 +116,7 @@ function registerEvents(svg) { // TODO Maybe: Do the animations AFTER the conten
     GreyPlanet.zoom(642, 476.95, 20, 20, zoomTime);
     moveStars(-50, -75, zoomTime);
     moveTitle('up');
-    loadContent('/blog');
+    // loadContent('/blog');
     e.preventDefault();
   });
 
@@ -111,7 +124,7 @@ function registerEvents(svg) { // TODO Maybe: Do the animations AFTER the conten
     BluePlanet.zoom(767, 436.05, 39, 39, zoomTime);
     moveStars(-100, -50, zoomTime);
     moveTitle('up');
-    loadContent('/contact');
+    // loadContent('/contact');
     e.preventDefault();
   });
   
@@ -148,38 +161,52 @@ function registerEvents(svg) { // TODO Maybe: Do the animations AFTER the conten
   
   var mouseOverT, mouseOutT;
   
-  $('body,.planet').hover(function() {
-    clearTimeout(mouseOutT);
-    mouseOverT = setTimeout(navAppear, 1000);
-  }, function() {
-    clearTimeout(mouseOverT);
-    mouseOutT = setTimeout(navDisappear, 2000);
+  $('body').mousemove(function(e) {
+    if (e.pageY > backArea) {
+      navAppear();
+    } else {
+      navDisappear();
+    };
+  });
+  
+  // $('body,.planet').hover(function() {
+  //   clearTimeout(mouseOutT);
+  //   mouseOverT = setTimeout(navAppear, 1000);
+  // }, function() {
+  //   clearTimeout(mouseOverT);
+  //   mouseOutT = setTimeout(navDisappear, 2000);
+  // })
+  
+  $("page-content").ajaxComplete(function() {
+    $(this).hide(0).show("fast")
   })
   
   navAppear = function() {
-    $('.zoomedOut #page-content>nav').css({
-      top: '670'
-    }).animate({
-      top: '620',
-      opacity: 1
-    }, 400)
+    if ($('.zoomedOut #page-content>nav').css('opacity') == "0") {
+      $('.zoomedOut #page-content>nav').css({
+        top: '670'
+      }).animate({
+        top: '620',
+        opacity: 1
+      }, 400)
+    };
   }
   
   navDisappear = function() {
-    $('.zoomedOut #page-content>nav').animate({
-      top: '570',
-      opacity: 0
+    if ($('.zoomedOut #page-content>nav').css('opacity') == "1") {
+      $('.zoomedOut #page-content>nav').animate({
+        top: '570',
+        opacity: 0
       }, 200)
+    }
   }
 
-  $('.planet').click(function() {
-    clearTimeout(mouseOverT);
-    clearTimeout(mouseOutT);
-    $('.zoomedOut #page-content>nav').animate({
-      top: '700',
-      opacity: 0
-      }, 1000)
-  });
+  // $('.planet').click(function() {
+  //     $('.zoomedOut #page-content>nav').animate({
+  //       top: '700',
+  //       opacity: 0
+  //     }, 1000)
+  //   });
   
 } // registerEvents
   

@@ -30,4 +30,8 @@ $(document).ready(function () {
       height: iHeight
     }, 'fast')
   });
+  
+  winWidth = $(document).innerWidth();
+  winHeight = $(document).innerHeight();
+  $('#allSVG').svg({ loadURL: 'assets/objects-in-space.svg', onLoad: afterLoad });
 })
